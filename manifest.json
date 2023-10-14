@@ -1,0 +1,16 @@
+{
+	"manifest_version": 3,
+	"name": "Better Linear Integration",
+	"version": "1.0",
+	"description": "Better Linear to Gitlab MR Integration ",
+	"host_permissions": ["https://ajax.googleapis.com/"],
+	"permissions": ["activeTab"],
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["script.js"],
+			"nonce": "jo7Idaj2143rDAMw131goia61jodjao793",
+			"run_at": "document_end"
+		}
+	]
+}
