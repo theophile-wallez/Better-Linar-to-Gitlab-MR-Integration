@@ -1,0 +1,101 @@
+.main-title {
+    flex-shrink: 0;
+    flex-grow: 1;
+}
+
+.issue-card {
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: var(--gray-10, #f1f1f1);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    cursor: pointer;
+}
+
+.issue-card:hover {
+    filter: brightness(95%);
+}
+
+.linear-tag {
+    background-color: var(--white, #fff);
+    padding: 2px 12px;
+    border-radius: 15px;
+    outline: 1px solid var(--border-color, #dcdcde);
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    text-wrap: nowrap;
+}
+
+.expendable-tag-container {
+    position: relative;
+    background-color: var(--white, #fff);
+    height: 23px;
+    width: 120px;
+
+    border-radius: 15px;
+    outline: 1px solid var(--border-color, #dcdcde);
+    display: flex;
+
+    text-wrap: nowrap;
+    color: "inherit";
+    gap: 6px;
+}
+
+.expendable-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 23px;
+}
+
+.expendable-tag:hover {
+    height: auto;
+}
+
+.linear-label {
+    background-color: var(--white, #fff);
+    padding: 2px 12px;
+    border-radius: 15px;
+    outline: 1px solid var(--border-color, #dcdcde);
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    text-wrap: nowrap;
+}
+
+.label-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+.linear-tag {
+    background-color: var(--white, #fff);
+    padding: 2px 12px;
+    border-radius: 15px;
+    outline: 1px solid var(--border-color, #dcdcde);
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    text-wrap: nowrap;
+    color: "inherit";
+    gap: 6px;
+    cursor: default;
+    user-select: none;
+}
+
+.clickable-tag {
+    cursor: pointer;
+}
+
+.clickable-tag:hover {
+    filter: brightness(85%);
+}

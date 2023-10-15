@@ -9,8 +9,16 @@
 		{
 			"matches": ["<all_urls>"],
 			"js": ["script.js"],
+			"css": ["style.css"],
 			"nonce": "jo7Idaj2143rDAMw131goia61jodjao793",
 			"run_at": "document_end"
 		}
-	]
+	],
+	"icons": {
+		"48": "icon.png",
+		"128": "icon.png"
+	},
+	"background": {
+		"service_worker": "background.js"
+	}
 }
