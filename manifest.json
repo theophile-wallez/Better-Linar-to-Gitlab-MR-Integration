@@ -8,8 +8,8 @@
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["src/script.js"],
-			"css": ["src/style.css"],
+			"js": ["src/content-script/script.js"],
+			"css": ["src/content-script/style.css"],
 			"nonce": "jo7Idaj2143rDAMw131goia61jodjao793",
 			"run_at": "document_end"
 		}
