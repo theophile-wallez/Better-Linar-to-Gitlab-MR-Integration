@@ -3,7 +3,6 @@
 	"name": "Better Linear to Gitlab Integration",
 	"version": "0.0.1",
 	"description": "Better Linear to Gitlab MR Integration",
-	"host_permissions": ["https://ajax.googleapis.com/"],
 	"permissions": ["activeTab", "storage"],
 	"content_scripts": [
 		{
