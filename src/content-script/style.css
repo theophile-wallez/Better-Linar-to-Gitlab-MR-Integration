@@ -1,6 +1,33 @@
+.issues-links-container {
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
 .main-title {
     flex-shrink: 0;
     flex-grow: 1;
+    margin-left: 0.4rem;
+}
+
+.linear-quick-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.issues-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .issue-card {
@@ -29,6 +56,7 @@
     align-items: center;
     font-size: 13px;
     text-wrap: nowrap;
+    pointer-events: initial;
 }
 
 .expendable-tag-container {
@@ -72,7 +100,6 @@
 .expendable-tags:hover {
     max-height: 1000px;
 }
-
 
 .expendable-tag {
     position: relative;

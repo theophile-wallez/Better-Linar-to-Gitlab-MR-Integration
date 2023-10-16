@@ -1,15 +1,13 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 	const apiKeyInput = document.getElementById("api-key");
 	const value = apiKeyInput.value;
 
-	if (!value) {
-		prefillApiKeyInput(apiKeyInput);
-	}
+	if (!value) prefillApiKeyInput(apiKeyInput);
 
 	const saveButton = document.getElementById("save");
 
-	saveButton.addEventListener("click", function () {
-		onSave(apiKeyInput);
+	saveButton.addEventListener("click", () => {
+		onSave(apiKeyInput.value);
 	});
 });
 
@@ -23,9 +21,8 @@ const prefillApiKeyInput = (apiKeyInput) => {
 	});
 };
 
-const onSave = (apiKeyInput) => {
-	const linearApiKey = apiKeyInput.value;
-	chrome.storage.local.set({linearApiKey: linearApiKey});
+const onSave = (newLinearApiKey) => {
+	chrome.storage.local.set({linearApiKey: newLinearApiKey});
 };
 
 document;

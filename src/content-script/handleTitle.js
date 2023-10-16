@@ -30,7 +30,7 @@ const addIssuesLinksToTitle = (issuesIds) => {
 	titleDiv.innerHTML = titleText;
 };
 
-const addIssuesLinksToDescription = (issuesIds) => {
+const addIssuesLinksToDescription = async (issuesIds) => {
 	const descriptionDivs = document.getElementsByClassName(
 		"issuable-discussion"
 	);
@@ -39,36 +39,33 @@ const addIssuesLinksToDescription = (issuesIds) => {
 	const descriptionDiv = descriptionDivs[0];
 
 	const issuesLinksContainer = document.createElement("div");
-	issuesLinksContainer.className = "mr-section-container";
-	issuesLinksContainer.style.marginTop = "1rem";
-	issuesLinksContainer.style.transition = "all 0.2s ease-in-out";
+	issuesLinksContainer.className =
+		"mr-section-container issues-links-container";
 
 	const issuesLinksBody = document.createElement("div");
 	issuesLinksBody.className = "mr-widget-body";
 
 	const titleRow = document.createElement("div");
-	titleRow.style.display = "flex";
-	titleRow.style.justifyContent = "space-between";
-	titleRow.style.alignItems = "center";
-	titleRow.style.marginBottom = "0.5rem";
+	titleRow.className = "title-row";
+
+	const linearIconContainer = document.createElement("div");
+	linearIconContainer.style.color = "#6A79ED";
+	linearIconContainer.style.display = "flex";
+	linearIconContainer.style.alignItems = "center";
+	linearIconContainer.style.justifyContent = "center";
+	linearIconContainer.innerHTML = LINEAR_ICON;
+	titleRow.appendChild(linearIconContainer);
 
 	const relatedIssuesText = document.createElement("div");
-	relatedIssuesText.innerText = pluralize(
-		"🔗 Related Linear issue",
-		issuesIds
-	);
+	relatedIssuesText.innerText = pluralize("Related Linear issue", issuesIds);
 	relatedIssuesText.className = "main-title gl-font-weight-bold";
 	titleRow.appendChild(relatedIssuesText);
 
 	const myInboxLink = document.createElement("a");
 	myInboxLink.className =
-		"badge gl-bg-transparent! gl-inset-border-1-gray-100! gl-mr-3 gl-display-none gl-sm-display-block badge-muted badge-pill gl-badge md";
+		"linear-quick-link badge gl-bg-transparent! gl-inset-border-1-gray-100! gl-mr-3 badge-muted badge-pill gl-badge md";
 	myInboxLink.href = "https://linear.app/inbox";
 	myInboxLink.target = "_blank";
-	myInboxLink.style.textDecoration = "none";
-	myInboxLink.style.display = "flex";
-	myInboxLink.style.alignItems = "center";
-	myInboxLink.style.gap = "5px";
 
 	const myInboxText = document.createElement("div");
 	myInboxText.innerText = "Inbox";
@@ -80,13 +77,9 @@ const addIssuesLinksToDescription = (issuesIds) => {
 
 	const myIssuesLink = document.createElement("a");
 	myIssuesLink.className =
-		"badge gl-bg-transparent! gl-inset-border-1-gray-100! gl-mr-3 gl-display-none gl-sm-display-block badge-muted badge-pill gl-badge md";
+		"linear-quick-link badge gl-bg-transparent! gl-inset-border-1-gray-100! gl-mr-3 badge-muted badge-pill gl-badge md";
 	myIssuesLink.href = "https://linear.app/my-issues/assigned";
 	myIssuesLink.target = "_blank";
-	myIssuesLink.style.textDecoration = "none";
-	myIssuesLink.style.display = "flex";
-	myIssuesLink.style.alignItems = "center";
-	myIssuesLink.style.gap = "5px";
 
 	myIssueText = document.createElement("div");
 	myIssueText.innerText = "My issues";
@@ -99,24 +92,24 @@ const addIssuesLinksToDescription = (issuesIds) => {
 	issuesLinksBody.appendChild(titleRow);
 
 	const issuesCardsContainer = document.createElement("div");
-	issuesCardsContainer.style.display = "flex";
-	issuesCardsContainer.style.flexDirection = "column";
-	issuesCardsContainer.style.gap = "8px";
-	Promise.all(
+	issuesCardsContainer.className = "issues-cards-container";
+
+	const issueCards = await Promise.all(
 		issuesIds.map(
 			async (issueId, index) => await generateIssueCard(issueId, index)
 		)
-	).then((values) => {
-		values.forEach((issueCard) => {
-			try {
-				issuesCardsContainer.appendChild(issueCard);
-			} catch (error) {}
-		});
-		issuesLinksBody.appendChild(issuesCardsContainer);
+	);
 
-		issuesLinksContainer.appendChild(issuesLinksBody);
-		descriptionDiv.prepend(issuesLinksContainer);
+	issueCards.forEach((issueCard) => {
+		try {
+			issuesCardsContainer.appendChild(issueCard);
+		} catch (error) {}
 	});
+
+	issuesLinksBody.appendChild(issuesCardsContainer);
+
+	issuesLinksContainer.appendChild(issuesLinksBody);
+	descriptionDiv.prepend(issuesLinksContainer);
 };
 
 const generateIssueCard = async (issueId, index) => {
