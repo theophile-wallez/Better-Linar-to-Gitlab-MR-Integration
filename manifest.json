@@ -8,7 +8,16 @@
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["src/content-script/script.js"],
+			"js": [
+				"src/content-script/constants.js",
+				"src/content-script/icons.js",
+				"src/content-script/handleTitle.js",
+				"src/content-script/queries/query.js",
+				"src/content-script/labels/labels-generator.js",
+				"src/content-script/utils.js",
+				"src/content-script/fetch.js",
+				"src/content-script/script.js"
+			],
 			"css": ["src/content-script/style.css"],
 			"nonce": "jo7Idaj2143rDAMw131goia61jodjao793",
 			"run_at": "document_end"
