@@ -1,0 +1,44 @@
+body {
+    width: 20rem;
+    background-color: #191A23;
+    color: rgb(228, 229, 244);
+    padding: 1rem;
+}
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    color: rgb(228, 229, 244);
+}
+
+h4 {
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+}
+
+input {
+    border-radius: 11px;
+    background-color: rgb(32, 33, 46);
+    padding: 4px 4px;
+    outline: none;
+    border: 1px solid rgb(53, 56, 74);
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+}
+
+button {
+    border-radius: 11px;
+    background-color: rgb(32, 33, 46);
+    color: rgb(228, 229, 244);
+    padding: 4px 4px;
+    outline: none;
+    border: 1px solid rgb(53, 56, 74);
+    width: 100%;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(1.1);
+}

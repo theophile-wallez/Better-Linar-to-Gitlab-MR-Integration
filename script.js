@@ -1,10 +1,8 @@
 const ISSUE_NAME_REGEX = /[A-Za-z]+-\d+/g;
 const TITLE_SELECTOR = '[data-qa-selector="title_content"]';
 const DESCRIPTION_SELECTOR = '[data-qa-selector="description_content"]';
-const API_CONFIG = {
-	personnalKey: "<your_linear_api_key>",
-	url: "https://api.linear.app/graphql",
-};
+
+const API_URL = "https://api.linear.app/graphql";
 
 const mrTitleObserver = new MutationObserver(function (_, mutationInstance) {
 	const titleDivs = document.querySelectorAll(TITLE_SELECTOR);
@@ -124,7 +122,9 @@ const addIssuesLinksToDescription = (issuesIds) => {
 		)
 	).then((values) => {
 		values.forEach((issueCard) => {
-			issuesCardsContainer.appendChild(issueCard);
+			try {
+				issuesCardsContainer.appendChild(issueCard);
+			} catch (error) {}
 		});
 		issuesLinksBody.appendChild(issuesCardsContainer);
 
@@ -167,6 +167,10 @@ const generateIssueCard = async (issueId, index) => {
 	if (hasLabels) {
 		issueData.labels.nodes
 			.sort((a, b) => b.identifier - a.identifier)
+			.filter(
+				(label) =>
+					!label.name.includes("API") || !label.name.includes("UI")
+			)
 			.forEach((label) => {
 				const labelTag = generateLabel(label);
 				issueCard.appendChild(labelTag);
@@ -379,11 +383,15 @@ getIssueData = async (issueId) => {
 
 const fetchLinearAPI = async (query) => {
 	try {
-		const res = await fetch(API_CONFIG.url, {
+		let keyAPI = await getAPIKey();
+		if (!keyAPI) {
+			return;
+		}
+		const res = await fetch(API_URL, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: API_CONFIG.personnalKey,
+				Authorization: keyAPI,
 			},
 			body: JSON.stringify({query}),
 		});
@@ -394,6 +402,17 @@ const fetchLinearAPI = async (query) => {
 		throw new Error(error);
 	}
 };
+
+const getAPIKey = async () =>
+	new Promise((resolve, reject) => {
+		chrome.storage.local.get(["linearApiKey"], function (result) {
+			if (chrome.runtime.lastError) {
+				reject(chrome.runtime.lastError);
+			} else {
+				resolve(result.linearApiKey);
+			}
+		});
+	});
 
 const issueQueryBuilder = (issueId) => `{ 
 	issue (id: "${issueId}") { 
@@ -470,7 +489,14 @@ const statusToIconMap = {
 	Duplicate: CANCELED_ICON,
 };
 
-mrTitleObserver.observe(document, {
-	childList: true,
-	subtree: true,
-});
+const observe = async () => {
+	const API_KEY = await getAPIKey();
+	if (!API_KEY) return;
+
+	mrTitleObserver.observe(document, {
+		childList: true,
+		subtree: true,
+	});
+};
+
+observe();
