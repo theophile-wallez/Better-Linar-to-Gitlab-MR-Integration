@@ -1,7 +1,0 @@
-{
-	"type": "module",
-	"dependencies": {
-		"@linear/sdk": "^9.0.1",
-		"extension-cli": "^1.2.4"
-	}
-}
