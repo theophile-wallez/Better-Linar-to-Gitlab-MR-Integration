@@ -14,10 +14,6 @@
 			"run_at": "document_end"
 		}
 	],
-	"icons": {
-		"48": "icon.png",
-		"128": "icon.png"
-	},
 	"background": {
 		"service_worker": "background.js"
 	},
