@@ -3,24 +3,29 @@ document.addEventListener("DOMContentLoaded", function () {
 	const value = apiKeyInput.value;
 
 	if (!value) {
-		// Retrieve the API key from Chrome's local storage
-		chrome.storage.local.get("linearApiKey", function (result) {
-			const linearApiKey = result.linearApiKey;
-
-			if (linearApiKey) {
-				apiKeyInput.value = linearApiKey;
-			}
-		});
+		prefillApiKeyInput(apiKeyInput);
 	}
 
 	const saveButton = document.getElementById("save");
 
 	saveButton.addEventListener("click", function () {
-		const linearApiKey = apiKeyInput.value;
-
-		// Store the API key in Chrome's local storage
-		chrome.storage.local.set({linearApiKey: linearApiKey});
+		onSave(apiKeyInput);
 	});
 });
+
+const prefillApiKeyInput = (apiKeyInput) => {
+	chrome.storage.local.get("linearApiKey", function (result) {
+		const linearApiKey = result.linearApiKey;
+
+		if (linearApiKey) {
+			apiKeyInput.value = linearApiKey;
+		}
+	});
+};
+
+const onSave = (apiKeyInput) => {
+	const linearApiKey = apiKeyInput.value;
+	chrome.storage.local.set({linearApiKey: linearApiKey});
+};
 
 document;
