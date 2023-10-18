@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Better Linear to Gitlab Integration",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Better Linear to Gitlab MR Integration",
 	"permissions": ["storage"],
 	"content_scripts": [
