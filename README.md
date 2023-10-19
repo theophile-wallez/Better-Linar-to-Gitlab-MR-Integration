@@ -8,13 +8,16 @@ This extension helps you swiftly visualize key informations about Linear issues 
 
 ### 📃 What infos are displayed?
 
-Depending on your issue, those infos are displayed:
-- Status
-- Labels
-- Parent issue
-- Sub-issues *(as an hoverable list of links)*
-- Issue that is/was blocking the current issue
-- Issues that are/were blocked by the current issue *(as an hoverable list of links)*
+Depending on the issue, those infos can be displayed:
+- ⚡️ Status
+- 🏷️ Labels
+- 👩‍👦 Parent issue
+- 👶 Sub-issues *(as an hoverable list of links)*
+- 🚩 Issue that is/was blocking the current issue
+- ✋ Issues that are/were blocked by the current issue *(as an hoverable list of links)*
+- ~~📋 Project~~
+- ~~⌛️ Cycle~~
+- ~~🔸 Milestones~~
 
 ## 💻 Install Locally
 
@@ -25,7 +28,7 @@ Depending on your issue, those infos are displayed:
 
 ## 🔑 Linear API key
 
-Your Linear API key is used to fetch data related to the issues found the merge request's title on the [Linear GraphQL API](https://studio.apollographql.com/public/Linear-API/variant/current/explorer). 
+Your Linear API key is used to fetch data related to the issues found in the merge request's title using the [Linear GraphQL API](https://studio.apollographql.com/public/Linear-API/variant/current/explorer). 
 
 ### Where can I find it?
 
@@ -35,17 +38,17 @@ Generate your Linear API key here: [Settings > My Account > API > Personal API k
 <br />
 <br />
 
-> This extension does not currently work without it, some features should in the `v0.0.5` version.
+> This extension does **not** currently work without it, some features should in the `v0.0.5` version.
 
 ## 🙋‍♀️ How does it work?
 ### Getting the issues IDs
 
-The Linear issues IDs are retrieved by searching in the MR title for anything that matches this: 
+The Linear issues IDs are retrieved by searching in the MR's title for anything that matches this: 
 ```js
 const issuePattern = /[A-Za-z]+-\d+/g; // or <anything>-<anything>
 ```
 
-The issues IDs are then replaced by Linear links in the MR title.
+The issues IDs are then replaced by Linear links in the MR's title.
 
 ### Displaying issues' informations
 
@@ -53,7 +56,7 @@ For each found IDs, a `POST` request is sent to the [Linear GraphQL API](https:/
 
 ## 🔒 Confidentiality
 
-- Your Linear API key is stored in your browser local storage.
+- Your Linear API key is **exclusively** stored in your browser local storage and is **only** used to fetch issue's data
 - No data is collected
 
 
