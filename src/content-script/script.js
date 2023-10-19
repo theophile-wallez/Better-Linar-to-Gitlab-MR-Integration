@@ -6,10 +6,7 @@ const mrTitleObserver = new MutationObserver(function (_, mutationInstance) {
 	mutationInstance.disconnect();
 });
 
-const observe = async () => {
-	const API_KEY = await getApiKeyFromStorage();
-	if (!API_KEY) return;
-
+const observe = () => {
 	mrTitleObserver.observe(document, {
 		childList: true,
 		subtree: true,

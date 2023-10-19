@@ -1,12 +1,12 @@
 const handleTitle = (titleDiv) => {
-	const uniqueIssuesIds = Array.from(new Set(issuesIds)).sort(
-		(a, b) => a - b
-	);
-	if (uniqueIssuesIds.length <= 0) return;
-	addIssuesLinksToTitle(uniqueIssuesIds);
-	addIssuesLinksToDescription(uniqueIssuesIds);
 	let titleText = !TEST_MODE ? titleDiv.innerHTML : testTitle;
 	const issuesIds = findIssuesIds(titleText);
+
+	if (issuesIds.length === 0) return;
+
+	addIssuesLinksToTitle();
+
+	addIssuesLinksToDescription(issuesIds);
 };
 
 const findIssuesIds = (title) => {
@@ -14,7 +14,7 @@ const findIssuesIds = (title) => {
 	return title.match(ISSUE_NAME_REGEX) ?? [];
 };
 
-const addIssuesLinksToTitle = (issuesIds) => {
+const addIssuesLinksToTitle = () => {
 	const titleDiv = document.querySelector(TITLE_SELECTOR);
 	if (!titleDiv) return;
 
@@ -29,7 +29,12 @@ const addIssuesLinksToTitle = (issuesIds) => {
 	titleDiv.innerHTML = titleText;
 };
 
-const addIssuesLinksToDescription = async (issuesIds) => {
+const addIssuesLinksToDescription = async (allIssuesIds) => {
+	const API_KEY = await getApiKeyFromStorage();
+	if (!API_KEY) return;
+
+	const issuesIds = Array.from(new Set(allIssuesIds)).sort((a, b) => a - b);
+
 	const descriptionDivs = document.getElementsByClassName(
 		"issuable-discussion"
 	);
@@ -135,13 +140,12 @@ const generateIssueCard = async (issueId, index) => {
 	issueCard.appendChild(issueTitle);
 
 	const hasStatus = issueData.state;
-
 	if (hasStatus) {
 		const statusTag = generateStatus(issueData.state);
 		issueCard.appendChild(statusTag);
 	}
-	const hasLabels = issueData.labels?.nodes?.length > 0;
 
+	const hasLabels = issueData.labels?.nodes?.length > 0;
 	if (hasLabels) {
 		issueData.labels.nodes
 			.sort((a, b) => b.identifier - a.identifier)
