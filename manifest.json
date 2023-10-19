@@ -1,8 +1,8 @@
 {
 	"manifest_version": 3,
 	"name": "Better Linear to Gitlab Integration",
-	"description": "Better Linear to Gitlab MR Integration",
 	"version": "0.0.5",
+	"description": "A simple Chromium extension that is designed to enhance the integration of Linear issues within your Gitlab merge requests page.",
 	"permissions": ["storage"],
 	"content_scripts": [
 		{
