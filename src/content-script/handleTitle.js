@@ -20,11 +20,10 @@ const addIssuesLinksToTitle = (issuesIds) => {
 
 	let titleText = !TEST_MODE ? titleDiv.innerHTML : testTitle;
 
-	issuesIds.forEach((issueId) => {
-		const link = `<a href="${getLinkToIssue(
-			issueId
-		)}" target="_blank">${issueId}</a>`;
-		titleText = titleText.replace(issueId, link);
+	titleText = titleText.replace(ISSUE_NAME_REGEX, (match) => {
+		return `<a href="${getLinkToIssue(
+			match
+		)}" target="_blank">${match}</a>`;
 	});
 
 	titleDiv.innerHTML = titleText;
