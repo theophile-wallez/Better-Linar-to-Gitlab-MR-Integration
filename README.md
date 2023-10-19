@@ -1,7 +1,7 @@
 # Better Linar to Gitlab MR Integration
 ## 🎯 Goal of this extension
 
-This extension helps you swiftly visualize key informations about Linear issues related to your merge requests.
+This extension helps you quickly visualize key informations about Linear issues related to your merge requests.
 
 <img width="830" alt="SCR-20231019-2rt" src="https://github.com/theophile-wallez/Better-Linar-to-Gitlab-MR-Integration/assets/66305625/e36721c0-bd9f-41ec-b5e2-f657941628bb">
 
