@@ -21,7 +21,7 @@ Depending on the issue, those infos can be displayed:
 
 ## 💻 Install Locally
 
-1. Download the latest release `.zip` file and un-zip it.
+1. Download the latest release `.zip` file and unzip it.
 3. Open chrome and navigate to extensions page using this URL: chrome://extensions.
 4. Enable the "Developer mode".
 5. Click "Load unpacked extension" button and select the unzipped extension's folder.
