@@ -3,7 +3,7 @@
 
 This extension helps you swiftly visualize key informations about Linear issues related to your merge requests.
 
-<img width="830" alt="image" src="https://github.com/theophile-wallez/Better-Linar-to-Gitlab-MR-Integration/assets/66305625/6e866bbd-a5f2-4dcf-8150-9b1095e53f9a">
+<img width="830" alt="SCR-20231019-2rt" src="https://github.com/theophile-wallez/Better-Linar-to-Gitlab-MR-Integration/assets/66305625/e36721c0-bd9f-41ec-b5e2-f657941628bb">
 
 
 ### 📃 What infos are displayed?
@@ -33,10 +33,6 @@ Your Linear API key is used to fetch data related to the issues found in the mer
 ### Where can I find it?
 
 Generate your Linear API key here: [Settings > My Account > API > Personal API keys](https://linear.app/settings/api)
-
-<img width="665" alt="image" src="https://github.com/theophile-wallez/Better-Linar-to-Gitlab-MR-Integration/assets/66305625/5eada9da-4c2b-4353-a2f9-be4f3fd79c75"/>  
-<br />
-<br />
 
 > This extension does **not** currently work without it, some features should in the `v0.0.5` version.
 
