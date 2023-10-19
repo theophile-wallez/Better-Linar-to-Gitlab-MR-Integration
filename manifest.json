@@ -8,6 +8,8 @@
 		{
 			"matches": ["<all_urls>"],
 			"js": [
+				"src/content-script/test.js",
+				"src/env.js",
 				"src/content-script/constants.js",
 				"src/content-script/icons.js",
 				"src/content-script/handleTitle.js",

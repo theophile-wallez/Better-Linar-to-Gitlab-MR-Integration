@@ -1,11 +1,12 @@
 const handleTitle = (titleDiv) => {
-	const issuesIds = findIssuesIds(titleDiv.innerText);
 	const uniqueIssuesIds = Array.from(new Set(issuesIds)).sort(
 		(a, b) => a - b
 	);
 	if (uniqueIssuesIds.length <= 0) return;
 	addIssuesLinksToTitle(uniqueIssuesIds);
 	addIssuesLinksToDescription(uniqueIssuesIds);
+	let titleText = !TEST_MODE ? titleDiv.innerHTML : testTitle;
+	const issuesIds = findIssuesIds(titleText);
 };
 
 const findIssuesIds = (title) => {
@@ -17,8 +18,7 @@ const addIssuesLinksToTitle = (issuesIds) => {
 	const titleDiv = document.querySelector(TITLE_SELECTOR);
 	if (!titleDiv) return;
 
-	// Find issues text in the title and replace them with their associated links
-	let titleText = titleDiv.innerHTML;
+	let titleText = !TEST_MODE ? titleDiv.innerHTML : testTitle;
 
 	issuesIds.forEach((issueId) => {
 		const link = `<a href="${getLinkToIssue(
