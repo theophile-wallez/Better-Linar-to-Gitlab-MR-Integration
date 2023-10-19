@@ -37,7 +37,6 @@ Generate your Linear API key here: [Settings > My Account > API > Personal API k
 > This extension does **not** currently work without it, some features should in the `v0.0.5` version.
 
 ## 🙋‍♀️ How does it work?
-### Getting the issues IDs
 
 The Linear issues IDs are retrieved by searching in the MR's title for anything that matches this: 
 ```js
@@ -46,9 +45,7 @@ const issuePattern = /[A-Za-z]+-\d+/g; // or <anything>-<anything>
 
 The issues IDs are then replaced by Linear links in the MR's title.
 
-### Displaying issues' informations
-
-For each found IDs, a `POST` request is sent to the [Linear GraphQL API](https://studio.apollographql.com/public/Linear-API/variant/current/explorer) using your API key.
+For each found ID, a `POST` request is sent to the [Linear GraphQL API](https://studio.apollographql.com/public/Linear-API/variant/current/explorer) using your API key.
 
 ## 🔒 Confidentiality
 
