@@ -20,10 +20,13 @@ const fetchLinearAPI = async (query) => {
 			body: JSON.stringify({query}),
 		});
 		if (!res.ok) {
-			throw new Error("Error while fetching data from Linear API");
+			console.log("res: ", res);
+			console.error(
+				"Error while fetching data from Linear API, your API key may be invalid."
+			);
 		}
 		return await res.json();
 	} catch (error) {
-		throw new Error(error);
+		console.error(error.message);
 	}
 };
