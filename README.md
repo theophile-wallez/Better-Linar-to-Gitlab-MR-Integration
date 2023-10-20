@@ -34,7 +34,7 @@ Your Linear API key is used to fetch data related to the issues found in the mer
 
 Generate your Linear API key here: [Settings > My Account > API > Personal API keys](https://linear.app/settings/api)
 
-> This extension does **not** currently work without it, some features should in the `v0.0.5` version.
+> Only the MR's title will be linkified if no API key is provided
 
 ## 🙋‍♀️ How does it work?
 
