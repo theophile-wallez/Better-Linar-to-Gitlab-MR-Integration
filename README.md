@@ -40,7 +40,7 @@ Generate your Linear API key here: [Settings > My Account > API > Personal API k
 
 The Linear issues IDs are retrieved by searching in the MR's title for anything that matches this: 
 ```js
-const issuePattern = /[A-Za-z]+-\d+/g; // or <anything>-<anything>
+const issuePattern = /[A-Za-z0-9]{1,5}-\d+/g; // or <anything>-<anything>
 ```
 
 The issues IDs are then replaced by Linear links in the MR's title.
