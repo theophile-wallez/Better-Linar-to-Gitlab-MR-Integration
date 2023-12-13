@@ -34,9 +34,23 @@ const findIssueIdsInDescription = () => {
 	const textArea = textAreas[0];
 	if(!textArea) return [];
 
-  const dataValue = textArea.getAttribute('data-value');
+  const descriptionText = textArea.getAttribute('data-value');
 
-	return dataValue.match(ISSUE_NAME_REGEX) ?? [];
+	const issueIdsDescription =  descriptionText.match(ISSUE_NAME_REGEX) ?? [];
+
+	if(issueIdsDescription.length > 0) {
+		let clonedDescriptionText = JSON.parse(JSON.stringify(descriptionText));
+		clonedDescriptionText = clonedDescriptionText.replace(ISSUE_NAME_REGEX, () => "");
+		clonedDescriptionText = clonedDescriptionText.replace(/\s/g, "");
+
+		if(clonedDescriptionText.length === 0) {
+			const markdownDiv = descriptionDivs[0].getElementsByClassName('md');
+			if(markdownDiv?.[0]) {
+				markdownDiv[0].style.display = "none";
+			}
+		}
+	}
+	return issueIdsDescription;
 }
 
 const addIssuesLinksToTitle = () => {
