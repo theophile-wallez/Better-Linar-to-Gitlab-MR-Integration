@@ -1,18 +1,43 @@
 const handleTitle = (titleDiv) => {
 	let titleText = !TEST_MODE ? titleDiv.innerHTML : testTitle;
-	const issuesIds = findIssuesIds(titleText);
+	const issueIdsTitle = findIssueIdsInTitle(titleText);
 
-	if (issuesIds.length === 0) return;
 
-	addIssuesLinksToTitle();
+	if (issueIdsTitle.length > 0 ) {
+		addIssuesLinksToTitle();
+	}	
 
-	addIssuesLinksToDescription(issuesIds);
+	const issueIdsDescription = findIssueIdsInDescription();
+
+	const allIssuesIds = Array.from(new Set([...issueIdsTitle.map(id=>id.toLocaleUpperCase()), ...issueIdsDescription.map(id=>id.toLocaleUpperCase())]));
+
+	if(!allIssuesIds?.length) return;
+
+	addIssuesOverviewToDescription(allIssuesIds);
 };
 
-const findIssuesIds = (title) => {
+
+/** @returns {string[]} */
+const findIssueIdsInTitle = (title) => {
 	if (!title) return [];
 	return title.match(ISSUE_NAME_REGEX) ?? [];
 };
+
+/** @returns {string[]} */
+const findIssueIdsInDescription = () => {
+	const descriptionDivs = document.querySelectorAll(DESCRIPTION_SELECTOR);
+	if (!descriptionDivs?.[0]) return [];
+
+	const textAreas = descriptionDivs[0].getElementsByTagName('textarea');
+	if (!textAreas?.[0]) return [];
+	
+	const textArea = textAreas[0];
+	if(!textArea) return [];
+
+  const dataValue = textArea.getAttribute('data-value');
+
+	return dataValue.match(ISSUE_NAME_REGEX) ?? [];
+}
 
 const addIssuesLinksToTitle = () => {
 	const titleDiv = document.querySelector(TITLE_SELECTOR);
@@ -29,7 +54,7 @@ const addIssuesLinksToTitle = () => {
 	titleDiv.innerHTML = titleText;
 };
 
-const addIssuesLinksToDescription = async (allIssuesIds) => {
+const addIssuesOverviewToDescription = async (allIssuesIds) => {
 	const API_KEY = await getApiKeyFromStorage();
 	if (!API_KEY) return;
 
